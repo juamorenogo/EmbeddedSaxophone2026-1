@@ -212,16 +212,16 @@
       "bases:Crear nueva base": false
     }
   },
-  "active": "f137f1cc5697817f",
+  "active": "158f8c75ac4def7c",
   "lastOpenFiles": [
     "Modified-embedded-system/README.md",
     "Development-notes/README.md",
     "README.md",
     "Development-notes",
     "Modified-embedded-system",
-    "AdditionalHardware/README.md",
-    "AdditionalHardware/AuxiliaryPCB",
-    "AdditionalHardware/AngleBracket/Angulo.stl",
-    "AdditionalHardware/AngleBracket"
+    "Additional-hardware/README.md",
+    "Additional-hardware/AuxiliaryPCB",
+    "Additional-hardware/AngleBracket/Angulo.stl",
+    "Additional-hardware/AngleBracket"
   ]
 }
