@@ -5,14 +5,14 @@ It is necessary to get the necessary submodules that the based on repository ask
 
 First, the SD card must be cleaned and formatted in order to correctly deploy the embedded system image. The following image illustrates the required SD logic :
 
-[![](Development-notes/V1_0/Images/F1.png)](https://github.com/juamorenogo/EmbebbedSaxophone2026-1/blob/5205b9788876554fdf731c266d4fa1feedd521b0/Development-notes/V1_0/Images/F1.png)
+![](Development-notes/V1_0/Images/F1.png)
 
 In version 1.0, the initial step is to compile **U-Boot** and create the necessary SD card partitions. The steps for preparing the SD card are described below:
 
 ---
 ## SD preparation
 
-
+1) **SD formatting:**
 
 2) **SD partitioning:**
 
