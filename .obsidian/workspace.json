@@ -41,7 +41,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Modified-embedded-system/README.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Modified-embedded-system/README.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,7 +142,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Modified-embedded-system/README.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -185,7 +185,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Modified-embedded-system/README.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -214,8 +214,8 @@
   },
   "active": "f137f1cc5697817f",
   "lastOpenFiles": [
-    "Development-notes/README.md",
     "Modified-embedded-system/README.md",
+    "Development-notes/README.md",
     "README.md",
     "Development-notes",
     "Modified-embedded-system",

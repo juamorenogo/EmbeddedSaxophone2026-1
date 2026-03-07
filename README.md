@@ -18,8 +18,8 @@ The repository provides the necessary files to deploy a **Debian-based operating
 
 The **SoC board PCB design** used in this project is attributed to **Carlos Ivan Camargo Bareño**, who provided the original hardware design used as the base for this development board.
 
-Additional modifications were introduced for this project.
-
 The **saxophone PCB** used in this project is based on the following open hardware repository:
 
 - https://github.com/cardonabits/haxo-hw
+
+This project includes an additional PCB designed to support new requirements and extended functionalities.
