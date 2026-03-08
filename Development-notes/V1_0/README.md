@@ -76,8 +76,36 @@ The following code was added to declare **UART0** and disable **UART3**:
 
 ### 3) build_u-boot.sh
 
-Remove the **git checkout -f** command from the `.sh` script. This command forces all files in the working directory to be restored to the state stored in the current Git commit.
-	
+Move the **git checkout -f** command to the beginning of the `.sh` script. This command resets all files in the working directory to the state stored in the current Git commit.
+
+It is also necessary to move the **cd u-boot** command before executing **git checkout -f**, since the reset must be performed inside the U-Boot repository. However, the **cd u-boot** command should remain later in the script as well, as it is required for the patch application and the compilation steps.
+
+The final version of the script is shown below:
+
+```
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+cd u-boot
+git checkout -f
+
+cd $SCRIPT_DIR
+
+cp u-boot-patch-v2025.07/t113s_saxo_defconfig u-boot/configs
+cp u-boot-patch-v2025.07/sun8i-t113s-saxo.dts         u-boot/arch/arm/dts
+cp u-boot-patch-v2025.07/sunxi-d1s-t113s-saxo.dtsi    u-boot/arch/arm/dts
+cp u-boot-patch-v2025.07/sunxi-d1s-t113.dtsi          u-boot/arch/riscv/dts
+
+cd u-boot
+patch -d . -p1 <  ../u-boot-patch-v2025.07/0001-saxo-dtb.patch
+
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4 t113s_saxo_defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
+
+
+```
+
 ---
 ## SD Preparation
 
