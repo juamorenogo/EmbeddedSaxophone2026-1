@@ -54,14 +54,30 @@ However, in the original configuration files, the UART interface is set to **UAR
 
 ### 1) t113s_saxo_defconfig
 
-### 2) sun8i-t113s-saxo.dts
+The value of *CONFIG_CONS_INDEX* must be changed from *=4* to *=1* (UART3 to UART0).
 
-### 3) sunxi-d1s-t113s-saxo.dtsi
+### 2) sunxi-d1s-t113s-saxo.dtsi
 
-### 4) sunxi-d1s-t113.dtsi 
+The following code was added to declare **UART0** and disable **UART3**:
 
+```
+&uart3 {        
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart3_pb_pins>;
+        status = "disabled";
+};
 
+&uart0 {        
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart0_pe2_pins>;
+        status = "okay";
+};
+```
 
+### 3) build_u-boot.sh
+
+Remove the **git checkout -f** command from the `.sh` script. This command forces all files in the working directory to be restored to the state stored in the current Git commit.
+	
 ---
 ## SD Preparation
 
