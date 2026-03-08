@@ -1,7 +1,7 @@
 
 ---
 
-It is necessary to get the necessary submodules that the based on repository asks, but it does not work if some changes are not made. 
+It is necessary to get the submodules that the based on repository asks, but it does not work if some changes are not made. 
 
 First, the SD card must be cleaned and formatted in order to correctly deploy the embedded system image. The following image illustrates the required SD logic :
 
@@ -14,6 +14,53 @@ In version 1.0, the initial step is to compile **U-Boot** and create the necessa
 
 ---
 ## U-boot fix
+
+Within the base Debian repository, a script named **build_u-boot.sh** is provided, whose contents are shown below:
+
+```
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+cd $SCRIPT_DIR
+
+cp u-boot-patch-v2025.07/t113s_saxo_defconfig u-boot/configs
+cp u-boot-patch-v2025.07/sun8i-t113s-saxo.dts         u-boot/arch/arm/dts
+cp u-boot-patch-v2025.07/sunxi-d1s-t113s-saxo.dtsi    u-boot/arch/arm/dts
+cp u-boot-patch-v2025.07/sunxi-d1s-t113.dtsi          u-boot/arch/riscv/dts
+
+cd u-boot
+
+git checkout -f
+
+patch -d . -p1 <  ../u-boot-patch-v2025.07/0001-saxo-dtb.patch
+
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4 t113s_saxo_defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
+
+```
+
+It can be observed that some files located in the U-Boot patch directory are copied into the root of the U-Boot source tree. Certain modifications must be made to these files. First, by reviewing the PCB hardware design, it can be seen that the **UART0 pins were configured for communication with the SoC**: 
+
+![](Development-notes/V1_0/Images/F15.png)
+
+![](Development-notes/V1_0/Images/F16.png)
+
+Those specific Pins are related to UART0:
+
+![](Development-notes/V1_0/Images/F14.png)
+
+However, in the original configuration files, the UART interface is set to **UART3**. Therefore, it is necessary to modify the configuration to use **UART0** instead.
+
+### 1) t113s_saxo_defconfig
+
+### 2) sun8i-t113s-saxo.dts
+
+### 3) sunxi-d1s-t113s-saxo.dtsi
+
+### 4) sunxi-d1s-t113.dtsi 
+
+
 
 ---
 ## SD Preparation
