@@ -42,13 +42,13 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
 
 It can be observed that some files located in the U-Boot patch directory are copied into the root of the U-Boot source tree. Certain modifications must be made to these files. First, by reviewing the PCB hardware design, it can be seen that the **UART0 pins were configured for communication with the SoC**: 
 
-![](Development-notes/V1_0/Images/F15.png)
+![](Images/F15.png)
 
-![](Development-notes/V1_0/Images/F16.png)
+![](Images/F16.png)
 
 Those specific Pins are related to UART0:
 
-![](Development-notes/V1_0/Images/F14.png)
+![](Images/F14.png)
 
 However, in the original configuration files, the UART interface is set to **UART3**. Therefore, it is necessary to modify the configuration to use **UART0** instead.
 
