@@ -37,7 +37,7 @@ w # Write table to disk and exit
 
 The exact location of the first and last sectors is determined by the memory space required to store the **U-Boot bootloader** on the SD card. The first sector is set to **35360** because the initial sectors of the SD card are reserved for the bootloader, boot configuration data, and other low-level system components required by the SoC during the boot process.
 
-Test1
+Test2
 ### 2) 
 
 
