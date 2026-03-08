@@ -74,7 +74,29 @@ The following code was added to declare **UART0** and disable **UART3**:
 };
 ```
 
+Finally, the following line is modified to indicate which serial port will be used:
+
+```
+	chosen {
+		stdout-path = "serial3:115200n8";
+	};
+	
+	# to
+	
+		chosen {
+		stdout-path = "serial0:115200n8";
+	};
+```
+
+
 ### 3) build_u-boot.sh
+
+It is suggested to clean U-boot anytime some file has changed, using:
+
+```
+make -C U-boot clean
+
+```
 
 Move the **git checkout -f** command to the beginning of the `.sh` script. This command resets all files in the working directory to the state stored in the current Git commit.
 

@@ -20,18 +20,6 @@
             }
           },
           {
-            "id": "fbf44a8de3c7310b",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Development-notes/t113-s3_datasheet_v1.2.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "t113-s3_datasheet_v1.2"
-            }
-          },
-          {
             "id": "a9c8f4f17b1923a5",
             "type": "leaf",
             "state": {
@@ -46,7 +34,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -210,30 +198,33 @@
   },
   "active": "158f8c75ac4def7c",
   "lastOpenFiles": [
-    "Development-notes/V1_0/Images/F16.png",
-    "Development-notes/V1_0/Images/F15.png",
-    "Development-notes/V1_0/Images/F14.png",
-    "Development-notes/Guidebook.pdf",
-    "Development-notes/t113-s3_datasheet_v1.2.pdf",
+    "Modified-embedded-system/Debian-OS-T113s/debian/scripts/debian_saxo.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/scripts/custom_user.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/etc/sources.list",
+    "Modified-embedded-system/Debian-OS-T113s/debian/scripts",
+    "Modified-embedded-system/Debian-OS-T113s/debian/README.md",
+    "Modified-embedded-system/Debian-OS-T113s/debian/etc",
+    "Modified-embedded-system/Debian-OS-T113s/debian/debian_second_stage.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/debian_umount.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/debian_saxo_stage.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/debian_first_stage.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/debian_mount.sh",
+    "Modified-embedded-system/Debian-OS-T113s/debian/build_squashfs.sh",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/dev-tools/kunit/kunit_suitememorydiagram.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/suspend.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/resume.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/blockdev/drbd/DRBD-data-packets.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/blockdev/drbd/DRBD-8.3-data-packets.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/media/ipu6_isys_graph.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/media/ipu3_rcb.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/RCU/Design/Memory-Ordering/TreeRCU-qs.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/RCU/Design/Requirements/ReadersPartitionGP1.svg",
+    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/RCU/Design/Memory-Ordering/TreeRCU-hotplug.svg",
+    "Modified-embedded-system/Debian-OS-T113s/README.md",
     "Development-notes/V1_0/README.md",
-    "Development-notes/GuiaCamargo.pdf",
-    "Development-notes/V1_0/Images/F13.png",
-    "Development-notes/V1_0/Images/F12.png",
-    "Development-notes/V1_0/Images/F11.png",
-    "Development-notes/V1_0/Images/F10.png",
     "Development-notes/README.md",
     "Modified-embedded-system/README.md",
     "README.md",
-    "Additional-hardware/README.md",
-    "Development-notes/V1_0/Images/F1.png",
-    "Pasted image 20260307181421.png",
-    "Pasted image 20260307181402.png",
-    "Development-notes/V1_0/Images",
-    "Development-notes/V1_0",
-    "Development-notes",
-    "Modified-embedded-system",
-    "Additional-hardware/AuxiliaryPCB",
-    "Additional-hardware/AngleBracket/Angulo.stl",
-    "Additional-hardware/AngleBracket"
+    "Additional-hardware/README.md"
   ]
 }
