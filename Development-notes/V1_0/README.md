@@ -37,7 +37,6 @@ patch -d . -p1 <  ../u-boot-patch-v2025.07/0001-saxo-dtb.patch
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4 t113s_saxo_defconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
-
 ```
 
 It can be observed that some files located in the U-Boot patch directory are copied into the root of the U-Boot source tree. Certain modifications must be made to these files. First, by reviewing the PCB hardware design, it can be seen that the **UART0 pins were configured for communication with the SoC**: 
@@ -95,7 +94,6 @@ It is suggested to clean U-boot anytime some file has changed, using:
 
 ```
 make -C U-boot clean
-
 ```
 
 Move the **git checkout -f** command to the beginning of the `.sh` script. This command resets all files in the working directory to the state stored in the current Git commit.
@@ -124,8 +122,6 @@ patch -d . -p1 <  ../u-boot-patch-v2025.07/0001-saxo-dtb.patch
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4 t113s_saxo_defconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
-
-
 ```
 
 
@@ -160,7 +156,7 @@ To accomplish this, **U-Boot must first be compiled** in order to generate the c
 In this particular case, the combined binary file u-boot-sunxi-with-spl.bin, which includes both the SPL and the full U-Boot bootloader, is written to the specified offset using the following command:
 
 ```
-sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8
+sudo dd if=u-boot/u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8
 
 # dd: low-level disk copy utility used to write raw data to a device
 
@@ -175,5 +171,9 @@ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8
 # Result: writes the bootloader starting at offset 8 KB (0x2000) on the SD card
 ```
 
+For safety, additional commands are used to completely disconnect the SD card:
 
-### 3) 
+```
+sudo umount /dev/sda*
+sync
+```
