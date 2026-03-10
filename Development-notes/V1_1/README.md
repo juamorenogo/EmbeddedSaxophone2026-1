@@ -83,7 +83,7 @@ Additionally, the following code section must be modified to specify which seria
 	
 	# to
 	
-		chosen {
+	chosen {
 		stdout-path = "serial0:115200n8";
 	};
 ```
@@ -102,8 +102,34 @@ These options determine which components are compiled directly into the kernel, 
 
 Once the `.config` file is present, the Linux build system automatically uses it to determine which components must be compiled when executing the `make` command.
 
+### 3) Add `sunxi-d1s-t113.dtsi` to the Linux patch
 
-### 3) Update `build_kernel.sh`
+If the kernel is built without additional modifications, the compilation process will fail because the configuration referencing the pin labels for **UART0** cannot be resolved.
+
+Although there are several possible ways to fix this issue, the chosen approach was to simply include the required configuration file inside the `linux-patch` directory and modify the build script so that this file is also copied into the Linux source tree before compilation.
+
+The original file containing this configuration can be found in **linux/arch/riscv/boot/dts/allwinner**.  This file is copied into the patch directory and the following configuration is added within the SoC description:
+
+
+```
+soc {
+/omit-if-no-ref/
+			uart0_pe2_pins: uart0-pe2-pins {
+				pins = "PE2", "PE3";
+				function = "uart0";
+			};
+			
+	}
+```
+
+
+This definition provides the pin control configuration required for **UART0**, allowing the kernel to correctly resolve the pin label referenced by the Device Tree.
+
+Once this modification is implemented, the `build_kernel.sh` script must be updated so that the modified file is also copied into the corresponding directory inside the Linux source tree before the kernel build process begins.
+
+### 3)  
+
+### 4) Update build_kernel.sh
 
 The `build_kernel.sh` script also contains the command `git checkout -f`. As in the U-Boot build script, this command is moved to the beginning of the script in order to avoid unnecessary overwrites of the modified files.
 
@@ -112,6 +138,8 @@ Executing `git checkout -f` at the start ensures that the Linux source tree is r
 The final version of the script is shown below:
 
 ```
+	#!/bin/bash
+
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
@@ -123,6 +151,7 @@ cd $SCRIPT_DIR
 
 cp linux-patch-6.16.9/sun8i-t113s-saxo-gateway.dts linux/arch/arm/boot/dts/allwinner
 cp linux-patch-6.16.9/sunxi-d1s-t113s-saxo.dtsi     linux/arch/arm/boot/dts/allwinner
+cp linux-patch-6.16.9/sunxi-d1s-t113.dtsi     linux/arch/riscv/boot/dts/allwinner # Linea nueva añadida para los pines
 cp linux-patch-6.16.9/config  linux/.config
 
 cd linux
