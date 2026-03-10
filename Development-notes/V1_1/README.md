@@ -56,6 +56,100 @@ However, since some changes were previously made to U-Boot, it is necessary to v
 
 ## Checking Linux DTS
 
+### 1) sunxi-d1s-t113s-saxo.dtsi
+
+The same modifications performed in the U-Boot configuration must be applied here as well. In general, this consists of enabling **UART0** and disabling **UART3** in order to match the hardware configuration of the board:
+
+```
+&uart3 {        
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart3_pb_pins>;
+        status = "disabled";
+};
+
+&uart0 {        
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart0_pe2_pins>;
+        status = "okay";
+};
+```
+
+Additionally, the following code section must be modified to specify which serial port will be used as the CPU's RX–TX interface:
+
+```
+	chosen {
+		stdout-path = "serial3:115200n8";
+	};
+	
+	# to
+	
+		chosen {
+		stdout-path = "serial0:115200n8";
+	};
+```
+
+### 2) Kernel configuration file (.config)
+
+The Linux kernel build system uses a configuration file named `.config` located at the root of the kernel source tree. This file defines all the options used during the compilation process, including enabled drivers, supported subsystems, architecture settings, and hardware-specific features.
+
+Each configuration option follows the format:
+
+```
+CONFIG_OPTION=value
+```
+
+These options determine which components are compiled directly into the kernel, compiled as loadable modules, or excluded from the build. This ensures that the kernel is compiled with the correct configuration required for the target hardware platform (Allwinner T113-S3). Using a predefined configuration avoids the need to manually enable the required drivers and features through the `menuconfig` interface.
+
+Once the `.config` file is present, the Linux build system automatically uses it to determine which components must be compiled when executing the `make` command.
+
+
+### 3) Update `build_kernel.sh`
+
+The `build_kernel.sh` script also contains the command `git checkout -f`. As in the U-Boot build script, this command is moved to the beginning of the script in order to avoid unnecessary overwrites of the modified files.
+
+Executing `git checkout -f` at the start ensures that the Linux source tree is restored to a clean state before applying the required patches and copying the modified configuration files.
+
+The final version of the script is shown below:
+
+```
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+cd linux
+git checkout -f
+
+cd $SCRIPT_DIR
+
+cp linux-patch-6.16.9/sun8i-t113s-saxo-gateway.dts linux/arch/arm/boot/dts/allwinner
+cp linux-patch-6.16.9/sunxi-d1s-t113s-saxo.dtsi     linux/arch/arm/boot/dts/allwinner
+cp linux-patch-6.16.9/config  linux/.config
+
+cd linux
+
+patch -d . -p1 < ../linux-patch-6.16.9/0001-saxo-dtb-reference.patch
+
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- menuconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- zImage dtbs modules -j4
+
+cd $SCRIPT_DIR
+
+LOAD_ADDR=0x41800000
+ENTRY_ADDR=0x41800000
+
+mkimage -A arm -O linux -T kernel -C none \
+  -a $LOAD_ADDR -e $ENTRY_ADDR \
+  -n "SAXO Linux Kernel (T113-S3)" \
+  -d ./linux/arch/arm/boot/zImage uImage
+echo "SAXO Linux Kernel (T113-S3)" : uImage
+```
+
+### 4) Kernel build
+
+The kernel build script is then executed to verify that the compilation process completes successfully. This step allows checking that the applied modifications, patches, and configuration files are consistent and do not introduce compilation errors.
+
+The build process generates the kernel image, the corresponding Device Tree binaries, and the required kernel modules for the target platform.
+
 
 
 ---
