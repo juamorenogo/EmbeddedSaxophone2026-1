@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/V1_1/README.md",
+                "file": "Development-notes/V1_0/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -213,9 +213,11 @@
   "active": "e45c61ba81936914",
   "lastOpenFiles": [
     "Development-notes/README.md",
+    "Development-notes/Guidebook.pdf",
     "Development-notes/V1_1/README.md",
-    "Development-notes/V1_1/Images",
     "Development-notes/V1_0/README.md",
+    "Development-notes/t113-s3_datasheet_v1.2.pdf",
+    "Development-notes/V1_1/Images",
     "Development-notes/V1_1",
     "Modified-embedded-system/Debian-OS-T113s/debian/scripts/debian_saxo.sh",
     "Modified-embedded-system/Debian-OS-T113s/debian/scripts/custom_user.sh",
@@ -224,8 +226,6 @@
     "Modified-embedded-system/Debian-OS-T113s/debian/README.md",
     "Modified-embedded-system/Debian-OS-T113s/debian/etc",
     "Modified-embedded-system/Debian-OS-T113s/debian/debian_second_stage.sh",
-    "Modified-embedded-system/Debian-OS-T113s/debian/debian_umount.sh",
-    "Modified-embedded-system/Debian-OS-T113s/debian/debian_saxo_stage.sh",
     "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/dev-tools/kunit/kunit_suitememorydiagram.svg",
     "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/suspend.svg",
     "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/resume.svg",
