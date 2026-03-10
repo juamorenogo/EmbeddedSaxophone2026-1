@@ -7,6 +7,7 @@ This directory contains the development notes for the additional software and ha
 Here, a brief description of each provided version:
 
 * V1_0 : U-Boot built
-* V1_1: Kernel built and partitions creation. 
+* V1_1: Kernel built
+* V1_2: Partitions creation
 * 
 

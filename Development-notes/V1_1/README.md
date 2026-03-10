@@ -102,6 +102,24 @@ These options determine which components are compiled directly into the kernel, 
 
 Once the `.config` file is present, the Linux build system automatically uses it to determine which components must be compiled when executing the `make` command.
 
+During the kernel build process, the compilation may fail in the `drivers/base/firmware_loader` stage.  
+This happens because the configuration file includes a reference to an external firmware file that is not present in the build environment.  
+  
+Originally, the configuration contained the following line:
+
+```
+CONFIG_EXTRA_FIRMWARE="rtlwifi/rtl8723bu_nic.bin"
+```
+
+
+This option instructs the kernel build system to embed the specified firmware into the kernel image. However, since this firmware file is not available in the expected firmware directory (`/lib/firmware`), the build process fails.
+
+To avoid this issue, the firmware reference must be removed by modifying the configuration as follows:
+
+```
+CONFIG_EXTRA_FIRMWARE=""
+```
+
 ### 3) Add `sunxi-d1s-t113.dtsi` to the Linux patch
 
 If the kernel is built without additional modifications, the compilation process will fail because the configuration referencing the pin labels for **UART0** cannot be resolved.
@@ -127,25 +145,30 @@ This definition provides the pin control configuration required for **UART0**, a
 
 Once this modification is implemented, the `build_kernel.sh` script must be updated so that the modified file is also copied into the corresponding directory inside the Linux source tree before the kernel build process begins.
 
-### 3)  
+### 3) Update build_kernel.sh
 
-### 4) Update build_kernel.sh
+Several additional modifications were introduced in the script to improve the reliability and reproducibility of the build process.
 
-The `build_kernel.sh` script also contains the command `git checkout -f`. As in the U-Boot build script, this command is moved to the beginning of the script in order to avoid unnecessary overwrites of the modified files.
+First, the option `set -e` was added at the beginning of the script. This instructs the shell to immediately stop the execution if any command returns a non–zero exit status. In this way, the build process does not continue after a failure, preventing the generation of incomplete or inconsistent outputs.
 
-Executing `git checkout -f` at the start ensures that the Linux source tree is restored to a clean state before applying the required patches and copying the modified configuration files.
+Additionally, the commands `git reset --hard` and `git clean -fd` are executed inside the `linux` directory before copying any modified files. These commands ensure that the Linux source tree is completely restored to the exact state of the current Git commit.
 
-The final version of the script is shown below:
+The command `git reset --hard` discards all local modifications to tracked files, while `git clean -fd` removes any untracked files or directories that may have been generated during previous builds. Together, these commands guarantee that every execution of the script starts from a fully clean source tree.
+
+Another modification consists of copying an additional file, `sunxi-d1s-t113.dtsi`, into the directory `linux/arch/riscv/boot/dts/allwinner`. This file contains the declaration of the pin configuration required for the UART0 interface. Without this definition, the device tree compilation fails because the corresponding pin labels cannot be resolved during the build process.
+
+Finally, the patch application command was commented out. Originally, the script attempted to apply the patch `0001-saxo-dtb-reference.patch` using the `patch` command. However, the changes introduced by this patch were already incorporated directly into the copied files. If the patch were applied again, the build system would detect it as a reversed or previously applied patch, which results in conflicts during the compilation process. For this reason, the patch step was disabled to avoid redundant modifications and to ensure a clean and deterministic build workflow.
 
 ```
-	#!/bin/bash
-
 #!/bin/bash
+
+set -e # Se detendra si un comando no sirve
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 cd linux
-git checkout -f
+git reset --hard
+git clean -fd
 
 cd $SCRIPT_DIR
 
@@ -156,9 +179,10 @@ cp linux-patch-6.16.9/config  linux/.config
 
 cd linux
 
-patch -d . -p1 < ../linux-patch-6.16.9/0001-saxo-dtb-reference.patch
+# N ignore los parches ya aplicados
+# patch -N -d . -p1 < ../linux-patch-6.16.9/0001-saxo-dtb-reference.patch
 
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- menuconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- olddefconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- zImage dtbs modules -j4
 
 cd $SCRIPT_DIR
@@ -175,31 +199,15 @@ echo "SAXO Linux Kernel (T113-S3)" : uImage
 
 ### 4) Kernel build
 
-The kernel build script is then executed to verify that the compilation process completes successfully. This step allows checking that the applied modifications, patches, and configuration files are consistent and do not introduce compilation errors.
+The kernel build script is then executed to verify that the compilation process completes successfully. This step allows checking that the applied modifications, patches, and configuration files are consistent and do not introduce compilation errors:
 
-The build process generates the kernel image, the corresponding Device Tree binaries, and the required kernel modules for the target platform.
+![](Images/F1.png)
 
+The build process generates the Linux kernel image, the corresponding Device Tree binaries (DTBs), and the required kernel modules for the target platform.
 
+Specifically, the compilation produces the compressed kernel image `zImage`, which is the binary executed by the bootloader during the system startup. In addition, the Device Tree sources (`.dts` and `.dtsi`) are compiled into Device Tree Binary files (`.dtb`). These files describe the hardware configuration of the board, including peripherals, pin assignments, clocks, and memory layout, allowing the Linux kernel to correctly initialize and interact with the system hardware.
 
----
-## SD Preparation
+The process also builds the loadable kernel modules specified in the configuration file. These modules provide support for optional drivers and subsystems that can be dynamically loaded by the operating system after boot.
 
-### 1) SD formatting and partitioning
-
-Using the Linux utility **fdisk**, it is possible to create, modify, and delete partitions on any storage device. In this case, the SD card is located at **/dev/sda**. Once the correct device path is known, the SD card can be prepared using the following commands:
-
-
-```
-sudo fdisk /dev/sda
-d # Repeat until every partition has been deleted.
-n # Add new partition
-p # Type of partition (Primary)
-1 # Partation number
-35360 # First sector
-+21M # Last sector oder aprox size of partition.
-p # Check that the partition has been created and its size ies 512K
-w # Write table to disk and exit
-```
-
-The exact location of the first and last sectors is determined by the memory space required to store the **Linux kernel** on the SD card. The first sector is set to **35360** because the initial sectors of the SD card are reserved for the bootloader, boot configuration data, and other low-level system components required by the SoC during the boot process.
+Finally, the generated `zImage` is wrapped using the `mkimage` tool to create a `uImage`, which includes the required header metadata for U-Boot. This header specifies parameters such as the architecture, load address, entry point, compression type, and image name, enabling the bootloader to correctly load and execute the kernel during the boot sequence.
 
