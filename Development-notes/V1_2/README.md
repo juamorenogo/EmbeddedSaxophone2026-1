@@ -1,8 +1,6 @@
 
 ---
-## SD Preparation
-
-### 1) Kernel details for partitioning
+##  1) Kernel details for partitioning
 
 After running:
 
@@ -122,7 +120,9 @@ Before deploying the kernel to the SD card, it is necessary to verify that all r
 
 These checks ensure that the kernel image is valid and properly formatted for U-Boot.
 
-### 2) SD formatting and partitioning
+
+---
+## 2) SD formatting and partitioning
 
 Using the Linux utility **fdisk**, it is possible to create, modify, and delete partitions on any storage device. In this case, the SD card is located at **/dev/sda**. Once the correct device path is known, the SD card can be prepared using the following commands:
 
