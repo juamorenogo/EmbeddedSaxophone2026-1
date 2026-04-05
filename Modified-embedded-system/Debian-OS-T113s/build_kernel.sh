@@ -21,7 +21,7 @@ cd linux
 # patch -N -d . -p1 < ../linux-patch-6.16.9/0001-saxo-dtb-reference.patch
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- olddefconfig
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- zImage dtbs modules -j4
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- zImage dtbs modules -j10
 
 cd $SCRIPT_DIR
 
