@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 
-#include <dt-bindings/interrupt-controller/irq.h>
-
 /dts-v1/;
 
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/* FIX CRÍTICO: include correcto */
 #include "sun8i-t113s.dtsi"
 #include "sunxi-d1s-t113s-saxo.dtsi"
 
