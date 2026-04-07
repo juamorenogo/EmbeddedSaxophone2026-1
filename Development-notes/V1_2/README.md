@@ -1,5 +1,4 @@
 
----
 ##  1) Kernel details for partitioning
 
 After running:
@@ -13,7 +12,7 @@ the kernel build process generates all the required binaries to boot the system 
 In this workflow, the kernel is first compiled in its native format and then transformed into a **U-Boot compatible image (uImage)**. Additionally, the system generates **Device Tree Blobs (DTB)** that describe the hardware configuration.
 
 ---
-#### Generated files
+### Generated files
 
 The build process produces multiple outputs, but not all of them are directly used during boot. It is important to distinguish between **intermediate artifacts** and **final bootable components**.
 
@@ -78,7 +77,7 @@ Kernel modules are optional components that extend the kernel functionality. The
 They are not required for the initial boot process, but they are necessary for a fully functional system.
 
 ---
-#### Files required for boot
+### Files required for boot
 
 To successfully boot the system, only a minimal set of files is required. These files are loaded by U-Boot from the SD card.
 
@@ -87,9 +86,8 @@ To successfully boot the system, only a minimal set of files is required. These 
 
 Both must be present and correctly referenced by the bootloader. Missing or incorrect files will prevent the system from booting.
 
----
-
-#### Partitioning implications
+## 1a) Final Implications of the Kernel Build
+### Partitioning implications
 
 The size and structure of the generated kernel directly influence how the **boot partition** should be defined on the SD card.
 
@@ -109,7 +107,7 @@ Although the kernel itself is relatively small, additional space is required for
 Allocating sufficient space avoids future repartitioning when adding features or debugging tools.
 
 ---
-#### Validation checks
+### Validation checks
 
 Before deploying the kernel to the SD card, it is necessary to verify that all required artifacts were correctly generated.
 
@@ -120,8 +118,6 @@ Before deploying the kernel to the SD card, it is necessary to verify that all r
 
 These checks ensure that the kernel image is valid and properly formatted for U-Boot.
 
-
----
 ## 2) SD formatting and partitioning
 
 Using the Linux utility **fdisk**, it is possible to create, modify, and delete partitions on any storage device. In this case, the SD card is located at **/dev/sda**. Once the correct device path is known, the SD card can be prepared using the following commands:
