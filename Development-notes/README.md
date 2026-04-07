@@ -1,13 +1,30 @@
 
 ---
-## General development notes of additional hardware and software.
+# Development Notes – Additional Hardware and Software
 
-This directory contains the development notes for the additional software and hardware implemented during the development of the proposed project. All documentation is written in `.md` format and organized according to the different development progress versions.
+This directory documents the step-by-step development process of the embedded Linux system, including both software and hardware integration.
 
-Here, a brief description of each provided version:
+All documentation is written in `.md` format and organized according to the **actual build and validation workflow**, rather than version snapshots.
 
-* V1_0 : U-Boot built.
-* V1_1: Kernel built.
-* V1_2: Checking kernel files and partitions creation.
-* 
+## Build and Development Flow
+
+The system is developed following a sequential process:
+
+- **00_U-boot**  
+Initial bootloader setup and build process.
+
+- **01_Kernel-build**  
+Linux kernel configuration, Device Tree integration, and compilation.
+
+- **02_SD-formatting-and-partitioning**  
+SD card preparation, partitioning scheme, and filesystem setup.
+
+Each Markdown contains detailed notes, commands, and configuration steps required to reproduce that stage of the system.
+## Additional Resources
+
+- `/Docs` → Datasheets and reference documentation
+    
+- `/Images` → Diagrams and visual aids
+    
+
 

@@ -315,7 +315,7 @@ Overall, these changes transform the script into a deterministic and repeatable 
 
 The kernel build script is then executed to verify that the compilation process completes successfully. This step allows checking that the applied modifications, patches, and configuration files are consistent and do not introduce compilation errors:
 
-![](Images/F1.png)
+![](Images/F1%201.png)
 
 To verify that the build process completes without errors and to keep a record of the output, the following command can be used to generate a log file:
 
