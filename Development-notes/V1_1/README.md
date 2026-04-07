@@ -150,34 +150,15 @@ Replaced by:
 &uart5 { status = "disabled"; };
 ```
 
----
-
-### 3) Add `sunxi-d1s-t113.dtsi` to the Linux patch (Revisar si es aun necesario)
-
-If the kernel is built without additional modifications, the compilation process will fail because the configuration referencing the pin labels for **UART0** cannot be resolved.
-
-Although there are several possible ways to fix this issue, the chosen approach was to simply include the required configuration file inside the `linux-patch` directory and modify the build script so that this file is also copied into the Linux source tree before compilation.
-
-The original file containing this configuration can be found in **linux/arch/riscv/boot/dts/allwinner**.  This file is copied into the patch directory and the following configuration is added within the SoC description:
-
-
-```
-soc {
-/omit-if-no-ref/
-			uart0_pe2_pins: uart0-pe2-pins {
-				pins = "PE2", "PE3";
-				function = "uart0";
-			};
-			
-	}
-```
-
-
-This definition provides the pin control configuration required for **UART0**, allowing the kernel to correctly resolve the pin label referenced by the Device Tree.
-
-Once this modification is implemented, the `build_kernel.sh` script must be updated so that the modified file is also copied into the corresponding directory inside the Linux source tree before the kernel build process begins.
 ## Update Makefile
 
+The Device Tree build system was updated to include the custom board definition in the kernel compilation process. Specifically, the file `linux/arch/arm/boot/dts/allwinner/Makefile` was modified by adding the following line:
+
+```
+dtb-$(CONFIG_ARCH_SUNXI) += sun8i-t113s-saxo-gateway.dtb
+```
+
+This change **ensures that the custom Device Tree** source file (`sun8i-t113s-saxo-gateway.dts`) is compiled into a corresponding `.dtb` file during the kernel build. Without this modification, the `.dts` file would not be processed, even if it exists in the directory, and no `.dtb` would be generated for the target board.
 
 ## Update build_kernel.sh
 
