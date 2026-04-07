@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/V1_2/README.md",
+                "file": "Development-notes/V1_1/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -185,8 +185,8 @@
   },
   "active": "d83ae67fa4d6596f",
   "lastOpenFiles": [
-    "Development-notes/V1_1/README.md",
     "Development-notes/V1_2/README.md",
+    "Development-notes/V1_1/README.md",
     "Development-notes/README.md",
     "Development-notes/t113-s3_datasheet_v1.2.pdf",
     "Development-notes/V1_0/README.md",
