@@ -8,7 +8,7 @@ By :
 ---
 ## Project Background
 
-This project is based on the software framework provided in the following repository:
+This project is based on the software framework provided in the following repository :
 
 - https://github.com/eljuguetero/T113_SAXO_OS
 

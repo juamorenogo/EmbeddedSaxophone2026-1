@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/README.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
@@ -185,6 +185,7 @@
   },
   "active": "d83ae67fa4d6596f",
   "lastOpenFiles": [
+    "Development-notes/README.md",
     "Development-notes/02_SD-formatting-and-partitioning.md",
     "Development-notes/01_Kernel-build.md",
     "Development-notes/00_U-boot.md",
@@ -192,7 +193,6 @@
     "Development-notes/Images/F11.png",
     "Development-notes/Images/F10.png",
     "Development-notes/Images/F1.png",
-    "Development-notes/README.md",
     "Development-notes/Docs/t113-s3_datasheet_v1.2.pdf",
     "Development-notes/Docs/Guidebook.pdf",
     "Development-notes/Docs",
