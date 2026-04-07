@@ -55,6 +55,7 @@ However, in the original configuration files, the UART interface is set to **UAR
 
 The value of *CONFIG_CONS_INDEX* must be changed from *=4* to *=1* (UART3 to UART0).
 
+
 ### 2) sunxi-d1s-t113s-saxo.dtsi
 
 The following code was added to declare **UART0** and disable **UART3**:
