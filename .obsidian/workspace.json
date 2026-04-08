@@ -8,29 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7690f7abe1a5a847",
+            "id": "8b8c2d0db6f8ea70",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/01b_Kernel-Checking.md",
+                "file": "Development-notes/Embedded-platform-building/03_Debian-uploading.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01b_Kernel-Checking"
-            }
-          },
-          {
-            "id": "4d2dd16744a44e52",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Development-notes/Docs/Guidebook.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Guidebook"
+              "title": "03_Debian-uploading"
             }
           }
         ]
@@ -195,37 +183,53 @@
       "bases:Create new base": false
     }
   },
-  "active": "7690f7abe1a5a847",
+  "active": "8b8c2d0db6f8ea70",
   "lastOpenFiles": [
+    "Development-notes/Embedded-platform-building/02b_Kernel-testing.md",
+    "Development-notes/Embedded-platform-building/03_Debian-uploading.md",
+    "Development-notes/Application-project/README.md",
+    "Development-notes/03_Debian-uploading.md",
+    "Development-notes/Application-project",
+    "Development-notes/Appli",
+    "Development-notes/Embedded-platform-building/Images/Fkernelstart.png",
+    "Development-notes/Embedded-platform-building/Images/FKernelpanic.png",
+    "Development-notes/Embedded-platform-building/Images/F16.png",
+    "Development-notes/Embedded-platform-building/Images/F15.png",
+    "Development-notes/Embedded-platform-building/Images/F14.png",
+    "Development-notes/Embedded-platform-building/Images/F13.png",
+    "Development-notes/Embedded-platform-building/Images/F12.png",
+    "Development-notes/Embedded-platform-building/Images/F11.png",
+    "Development-notes/Embedded-platform-building/Images/F1.png",
+    "Development-notes/Embedded-platform-building/Images/F10.png",
+    "Development-notes/Embedded-platform-building/README.md",
+    "Development-notes/Embedded-platform-building/Images",
+    "Development-notes/Embedded-platform-building/02_SD-partitioning-and-Kernel-upload.md",
+    "Development-notes/Embedded-platform-building/01_Kernel-build.md",
+    "Development-notes/Embedded-platform-building/01b_Kernel-Checking.md",
+    "Development-notes/Embedded-platform-building/00_U-boot.md",
+    "Development-notes/Embedded-platform-building",
+    "Development-notes/Nueva carpeta",
+    "Development-notes/Platform-building/Images",
+    "Development-notes/Platform-building/README.md",
+    "Development-notes/Platform-building/03_Debian-uploading.md",
+    "Development-notes/Platform-building/02b_Kernel-testing.md",
+    "Development-notes/Platform-building/02_SD-partitioning-and-Kernel-upload.md",
+    "Development-notes/Platform-building/01b_Kernel-Checking.md",
+    "Development-notes/Platform-building/01_Kernel-build.md",
+    "Development-notes/Platform-building/00_U-boot.md",
+    "Development-notes/Platform-building",
+    "Development-notes/SystemBuilding",
+    "Development-notes/02b_Kernel-testing.md",
     "Development-notes/02_SD-partitioning-and-Kernel-upload.md",
+    "Development-notes/01b_Kernel-Checking.md",
     "Development-notes/Docs/Guidebook.pdf",
     "Development-notes/01_Kernel-build.md",
-    "Development-notes/01b_Kernel-Checking.md",
     "Development-notes/README.md",
     "Development-notes/00_U-boot.md",
     "README.md",
-    "Development-notes/Images/F12.png",
-    "Development-notes/Images/F11.png",
-    "Development-notes/Images/F10.png",
-    "Development-notes/Images/F1.png",
     "Development-notes/Docs/t113-s3_datasheet_v1.2.pdf",
-    "Development-notes/Docs",
-    "Development-notes/Images/F1 1.png",
-    "Development-notes/V1_2",
-    "Development-notes/V1_1/Images",
-    "Development-notes/V1_1",
-    "Modified-embedded-system/Debian-OS-T113s/debian/scripts/debian_saxo.sh",
-    "Modified-embedded-system/Debian-OS-T113s/debian/scripts/custom_user.sh",
-    "Modified-embedded-system/Debian-OS-T113s/debian/etc/sources.list",
-    "Modified-embedded-system/Debian-OS-T113s/debian/scripts",
     "Modified-embedded-system/Debian-OS-T113s/debian/README.md",
-    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/dev-tools/kunit/kunit_suitememorydiagram.svg",
-    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/suspend.svg",
-    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/arch/x86/resume.svg",
-    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/blockdev/drbd/DRBD-data-packets.svg",
-    "Modified-embedded-system/Debian-OS-T113s/linux/Documentation/admin-guide/blockdev/drbd/DRBD-8.3-data-packets.svg",
     "Modified-embedded-system/Debian-OS-T113s/README.md",
-    "Modified-embedded-system/README.md",
-    "Additional-hardware/README.md"
+    "Modified-embedded-system/README.md"
   ]
 }
