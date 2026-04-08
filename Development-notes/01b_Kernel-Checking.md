@@ -80,7 +80,7 @@ They are not required for the initial boot process, but they are necessary for a
 
 To successfully boot the system, only a minimal set of files is required. These files are loaded by U-Boot from the SD card.
 
-- **uImage**  
+- **uImage or zImage**
 - **Corresponding .dtb file**
 
 Both must be present and correctly referenced by the bootloader. Missing or incorrect files will prevent the system from booting.
@@ -93,7 +93,7 @@ The size and structure of the generated kernel directly influence how the **boot
 - **Kernel size:** ~5.64 MB  
 
 The boot partition must include:
-- **uImage**  
+- **uImage or zImage**  
 - **DTB files**  
 - optional boot scripts (e.g., boot.scr)
 
@@ -105,14 +105,3 @@ Although the kernel itself is relatively small, additional space is required for
 
 Allocating sufficient space avoids future repartitioning when adding features or debugging tools.
 
----
-### Validation checks
-
-Before deploying the kernel to the SD card, it is necessary to verify that all required artifacts were correctly generated.
-
-- **Check kernel image:** ls uImage  
-- **Check DTB files:** ls linux/arch/arm/boot/dts/allwinner/*.dtb  
-- **Inspect image metadata:** file uImage  
-- **Inspect U-Boot header:** mkimage -l uImage  
-
-These checks ensure that the kernel image is valid and properly formatted for U-Boot.
