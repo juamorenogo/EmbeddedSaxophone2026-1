@@ -3,8 +3,9 @@
 
 ## Arch does not work for this part.
 
-It was necessary to install a Debian Virtual Machine to be able to make the next steps. 
+It was necessary to install a Debian Virtual Machine to be able to make the next steps.
 
+Se deja registro del proceso en ARCH aunque este no funcionara.
 
 ## Debian Filesystem building and partition mounting
 
@@ -17,11 +18,11 @@ sudo mkfs.ext4 /dev/sda2
 After creating the filesystem, the partition must be mounted to make it accessible from the host system:
 
 ```
-sudo mkdir -p /mnt/sd
-sudo mount /dev/sdb2 /mnt/sd
+sudo mkdir -p /mnt/rootfs
+sudo mount /dev/sda2 /mnt/rootfs
 ```
 
-This mounts the physical partition `/dev/sdb2` into the directory `/mnt/sd`, allowing files to be written directly into the SD card. This directory will temporarily act as the root (`/`) of the future Debian system.
+This mounts the physical partition `/dev/sda2` into the directory `/mnt/rootfs`, allowing files to be written directly into the SD card. This directory will temporarily act as the root (`/`) of the future Debian system.
 
 ## Debian debootstrap
 

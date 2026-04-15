@@ -185,8 +185,10 @@
   },
   "active": "8b8c2d0db6f8ea70",
   "lastOpenFiles": [
-    "Development-notes/Embedded-platform-building/02b_Kernel-testing.md",
+    "Development-notes/Embedded-platform-building/03_DEPRECATED_Debian-uploading.md",
     "Development-notes/Embedded-platform-building/03_Debian-uploading.md",
+    "Development-notes/Embedded-platform-building/03_DEPRECATED_Debian-uploading - copia.md",
+    "Development-notes/Embedded-platform-building/02b_Kernel-testing.md",
     "Development-notes/Application-project/README.md",
     "Development-notes/03_Debian-uploading.md",
     "Development-notes/Application-project",
@@ -228,8 +230,6 @@
     "Development-notes/00_U-boot.md",
     "README.md",
     "Development-notes/Docs/t113-s3_datasheet_v1.2.pdf",
-    "Modified-embedded-system/Debian-OS-T113s/debian/README.md",
-    "Modified-embedded-system/Debian-OS-T113s/README.md",
-    "Modified-embedded-system/README.md"
+    "Modified-embedded-system/Debian-OS-T113s/debian/README.md"
   ]
 }
