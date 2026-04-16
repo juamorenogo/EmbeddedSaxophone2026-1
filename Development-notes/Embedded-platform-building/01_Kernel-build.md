@@ -41,14 +41,24 @@ Originally, the configuration contained the following line:
 
 ```
 CONFIG_EXTRA_FIRMWARE="rtlwifi/rtl8723bu_nic.bin"
+CONFIG_EXTRA_FIRMWARE_DIR="\lib/firmware"
 ```
 
 
-This option instructs the kernel build system to embed the specified firmware into the kernel image. However, since this firmware file is not available in the expected firmware directory (`/lib/firmware`), the build process fails. To avoid this issue, the firmware reference must be removed by modifying the configuration as follows:
+Originally, the configuration expected the firmware to be present under `/lib/firmware`, which caused the build process to fail since this directory does not exist in the build environment.
+
+To resolve this issue, instead of removing the firmware reference, the required directory is explicitly created within the `build_kernel.sh` script, ensuring the firmware path is valid during compilation. This allows the kernel build system to correctly locate and embed the specified firmware.
+
+Additionally, a small but important correction was made to the firmware directory path:
 
 ```
-CONFIG_EXTRA_FIRMWARE=""
+CONFIG_EXTRA_FIRMWARE="rtlwifi/rtl8723bu_nic.bin "
+CONFIG_EXTRA_FIRMWARE_DIR="lib/firmware"
 ```
+
+The leading backslash (`\`) was removed because it incorrectly defines an absolute path (`/lib/firmware`). In the context of the kernel build system, this causes it to look outside the build tree, leading to a missing path error.
+
+By changing it to a relative path (`lib/firmware`), the firmware directory is correctly resolved within the build environment.
 
 ---
 ### 2) sunxi-d1s-t113s-saxo.dtsi
@@ -160,6 +170,29 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun8i-t113s-saxo-gateway.dtb
 
 This change **ensures that the custom Device Tree** source file (`sun8i-t113s-saxo-gateway.dts`) is compiled into a corresponding `.dtb` file during the kernel build. Without this modification, the `.dts` file would not be processed, even if it exists in the directory, and no `.dtb` would be generated for the target board.
 
+
+## Firmware directory and WIFI firmware module
+
+### Why to do it
+
+To properly enable the WiFi module based on the **RTL8723BU** chipset, it is necessary to include the corresponding firmware in the kernel tree. This firmware is not part of the mainline kernel source, so it must be added manually.
+
+The firmware file (`rtl8723bu_nic.bin`) was previously downloaded and stored inside the project’s patch directory ``linux-patch-6.16.9/``.
+
+This approach keeps all external resources (patches, firmware, etc.) centralized and version-controlled within the project.
+
+During the kernel build process, the firmware must be copied into the standard directory where the system expects to find it on ``linux/lib/firmware/rtlwifi/``.
+
+### Integration in the build script
+
+Inside the `build_kernel.sh` script, the following commands are used to guarantee that the firmware is always present during the build:
+
+```
+# WiFi firmware for RTL8723BU
+mkdir -p linux/lib/firmware/rtlwifi
+cp linux-patch-6.16.9/rtl8723bu_nic.bin linux/lib/firmware/rtlwifi/
+```
+
 ## Update build_kernel.sh
 
 ### Original script check
@@ -246,6 +279,14 @@ cd linux
 git reset --hard
 git clean -fd
 
+cd ..
+# -- Copia el config-----
+cp linux-patch-6.16.9/config linux/.config
+
+## Firmware
+mkdir -p linux/lib/firmware/rtlwifi
+cp linux-patch-6.16.9/rtl8723bu_nic.bin linux/lib/firmware/rtlwifi/
+
 cd "$SCRIPT_DIR"
 
 # --- Copiar device tree y config ---
@@ -255,7 +296,9 @@ cp linux-patch-6.16.9/sun8i-t113s-saxo-gateway.dts \
 cp linux-patch-6.16.9/sunxi-d1s-t113s-saxo.dtsi \
    linux/arch/arm/boot/dts/allwinner
 
-cp linux-patch-6.16.9/config linux/.config
+# ELIMINADO: archivo incorrecto para ARM
+# cp linux-patch-6.16.9/sunxi-d1s-t113.dtsi ...
+
 
 cd linux
 
