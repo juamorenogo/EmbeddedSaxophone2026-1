@@ -17,6 +17,14 @@ cd linux
 git reset --hard
 git clean -fd
 
+cd ..
+# -- Copia el config-----
+cp linux-patch-6.16.9/config linux/.config
+
+## Firmware
+mkdir -p linux/lib/firmware/rtlwifi
+cp linux-patch-6.16.9/rtl8723bu_nic.bin linux/lib/firmware/rtlwifi/
+
 cd "$SCRIPT_DIR"
 
 # --- Copiar device tree y config ---
@@ -29,7 +37,6 @@ cp linux-patch-6.16.9/sunxi-d1s-t113s-saxo.dtsi \
 # ❌ ELIMINADO: archivo incorrecto para ARM
 # cp linux-patch-6.16.9/sunxi-d1s-t113.dtsi ...
 
-cp linux-patch-6.16.9/config linux/.config
 
 cd linux
 
