@@ -1,4 +1,4 @@
-## Kernel image selection
+			## Kernel image selection
 
 Two common kernel image formats can be used with U-Boot: `zImage` and `uImage`.
 
