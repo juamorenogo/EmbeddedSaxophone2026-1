@@ -1,3 +1,6 @@
 [submodule "Modified-embedded-system/Debian-OS-T113s/linux"]
 	path = Modified-embedded-system/Debian-OS-T113s/linux
 	url = https://github.com/torvalds/linux.git
+[submodule "Modified-embedded-system/Debian-OS-T113s/u-boot"]
+	path = Modified-embedded-system/Debian-OS-T113s/u-boot
+	url = https://github.com/u-boot/u-boot.git
