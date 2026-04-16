@@ -14,7 +14,7 @@ sudo apt install -y debootstrap fakeroot qemu-user-static binfmt-support
 Once the partitioning step is completed, it is necessary to create a filesystem for the Debian root partition. In this case, an **ext4 filesystem** is used, which is the standard filesystem for Linux systems:
 
 ```
-sudo mkfs.ext4 /dev/sda2
+sudo mkfs.ext4 /dev/sdb2
 ```
 
 After creating the filesystem, the partition must be mounted to make it accessible from the host system:

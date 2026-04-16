@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/Embedded-platform-building/01_Kernel-build.md",
+                "file": "Development-notes/Embedded-platform-building/05_Debian-wifi-config.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01_Kernel-build"
+              "title": "05_Debian-wifi-config"
             }
           }
         ]
@@ -187,16 +187,16 @@
   "lastOpenFiles": [
     "Development-notes/Embedded-platform-building/06_Debian-basic-config.md",
     "Development-notes/Embedded-platform-building/05_Debian-wifi-config.md",
+    "Development-notes/Embedded-platform-building/03_Debian-uploading.md",
     "Development-notes/Embedded-platform-building/04_Debian-booting-and-testing.md",
+    "Development-notes/Embedded-platform-building/01_Kernel-build.md",
     "Development-notes/Embedded-platform-building/02_SD-partitioning-and-Kernel-upload.md",
     "Development-notes/Embedded-platform-building/03_DEPRECATED_Debian-uploading-from-Arch.md",
     "Development-notes/Embedded-platform-building/01b_Kernel-Checking.md",
-    "Development-notes/Embedded-platform-building/01_Kernel-build.md",
     "Development-notes/Embedded-platform-building/02b_Kernel-testing.md",
     "Development-notes/Embedded-platform-building/Pasted image 20260415160445.png",
     "Development-notes/Embedded-platform-building/Images/F20.png",
     "Development-notes/Embedded-platform-building/Images/Fdebian.png",
-    "Development-notes/Embedded-platform-building/03_Debian-uploading.md",
     "Development-notes/Embedded-platform-building/03_DEPRECATED_Debian-uploading - copia.md",
     "Development-notes/Application-project/README.md",
     "Development-notes/03_Debian-uploading.md",
