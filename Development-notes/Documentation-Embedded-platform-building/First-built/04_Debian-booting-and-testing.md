@@ -26,7 +26,7 @@ bootz ${kernel_addr_r} - ${fdt_addr_r}
 
 At this point, the Linux kernel begins execution, mounts the root filesystem, and starts the Debian user space. If everything is correctly configured, the system will present a login prompt through the serial console. 
 
-![](First-built/Images/Fdebian.png)
+![](Images/Fdebian.png)
 
 ## Script for automated booting to Debian
 
@@ -70,4 +70,4 @@ sudo umount /mnt/boot
 
 During startup, U-Boot will detect and execute this script automatically, allowing the system to boot into Debian without manual intervention.
 
-![](First-built/Images/F20.png)
+![](Images/F20.png)

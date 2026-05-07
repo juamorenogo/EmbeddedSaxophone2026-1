@@ -6,7 +6,7 @@ It is necessary to get the submodules that the based on repository asks, but it 
 First, the SD card must be cleaned and formatted in order to correctly deploy the embedded system image. The following image illustrates the required SD logic :
 
 
-![F1](First-built/Images/F1.png)
+![F1](Images/F1.png)
 
 
 In version 1.0, the initial step is to compile **U-Boot** and create the necessary SD card partitions. The steps for preparing the SD card and fixing U-boot are described below. 
@@ -41,13 +41,13 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
 
 It can be observed that some files located in the U-Boot patch directory are copied into the root of the U-Boot source tree. Certain modifications must be made to these files. First, by reviewing the PCB hardware design, it can be seen that the **UART0 pins were configured for communication with the SoC**: 
 
-![](./Images/F15.png)
+![](Images/F15.png)
 
-![](./Images/F16.png)
+![](Images/F16.png)
 
 Those specific Pins are related to UART0:
 
-![](./Images/F14.png)
+![](Images/F14.png)
 
 However, in the original configuration files, the UART interface is set to **UART3**. Therefore, it is necessary to modify the configuration to use **UART0** instead.
 
