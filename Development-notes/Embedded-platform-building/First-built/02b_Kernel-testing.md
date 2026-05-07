@@ -40,8 +40,8 @@ Finally, since no root filesystem is present yet, the system will stop with a **
 
 #### Kernel starting.
 
-![](Images/Fkernelstart.png)
+![](First-built/Images/Fkernelstart.png)
 
 #### Kernel panic.
 
-![](Images/FKernelpanic.png)
+![](First-built/Images/FKernelpanic.png)
