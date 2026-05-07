@@ -1,4 +1,4 @@
-			## Kernel image selection
+## Kernel image selection
 
 Two common kernel image formats can be used with U-Boot: `zImage` and `uImage`.
 
@@ -18,7 +18,7 @@ Using the Linux utility **fdisk**, it is possible to create, modify, and delete 
 
 Using the following commands the Kernel partition is created:
 
-```
+```bash
 sudo fdisk /dev/sda
 
 d # Repeat until every partition has been deleted.
@@ -42,7 +42,7 @@ The exact location of the first and last sectors is determined by the memory spa
 
 Using the following commands the Kernel partition is created:
 
-```
+```bash
 sudo fdisk /dev/sda
 
 n # Add new partition
@@ -71,7 +71,7 @@ Using the following command, a **filesystem is created for the kernel partition*
 
 Therefore, it is necessary to explicitly generate the filesystem structure within the partition:
 
-```
+```bash
 sudo mkfs.vfat -F 32 /dev/sda1
 ```
 
@@ -81,7 +81,7 @@ This step initializes the FAT32 filesystem, enabling the partition to store and 
 
 The next command attaches (mounts) the filesystem of the partition `/dev/sda1` to the directory `/mnt/boot`:
 
-```
+```bash
 sudo mkdir -p /mnt/boot
 sudo mount /dev/sda1 /mnt/boot
 ```
@@ -108,7 +108,7 @@ This mechanism is fundamental in Linux systems, as it enables seamless interacti
 
 Now that the partition has been mounted and is accessible through the host system’s filesystem, the generated kernel image can be copied using the following command:
 
-```
+```bash
 sudo cp linux/arch/arm/boot/zImage /mnt/boot/
 ```
 
@@ -120,7 +120,7 @@ The purpose of this step is to **make the kernel available to the bootloader (U-
 
 Next, the corresponding Device Tree Blob (DTB) file for the target board is copied into the mounted boot partition:
 
-```
+```bash
 sudo cp linux/arch/arm/boot/dts/allwinner/sun8i-t113s-saxo-gateway.dtb /mnt/boot/
 ```
 
@@ -130,7 +130,7 @@ The purpose of the DTB is to **describe the hardware configuration of the target
 
 After copying the required files into the mounted partition, the following commands are executed:
 
-```
+```bash
 sync
 sudo umount /mnt/boot
 ```

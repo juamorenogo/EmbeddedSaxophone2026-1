@@ -5,7 +5,7 @@ For regular system usage, a non-root user was created in order to avoid operatin
 
 The user created for this system is `sebastian-t113`. To create the user, the following command is used:
 
-```
+```bash
 adduser sebastian-t113
 ```
 
@@ -13,7 +13,7 @@ During this process, the system prompts for a password and optional user informa
 
 To allow administrative operations when needed, the user must be added to the sudo group:
 
-```
+```bash
 usermod -aG sudo sebastian-t113
 ```
 

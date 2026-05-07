@@ -11,13 +11,13 @@ Se deja registro del proceso en ARCH aunque este no funcionara.
 
 Once the partitioning step is completed, it is necessary to create a filesystem for the Debian root partition. In this case, an **ext4 filesystem** is used, which is the standard filesystem for Linux systems:
 
-```
+```bash
 sudo mkfs.ext4 /dev/sda2
 ```
 
 After creating the filesystem, the partition must be mounted to make it accessible from the host system:
 
-```
+```bash
 sudo mkdir -p /mnt/rootfs
 sudo mount /dev/sda2 /mnt/rootfs
 ```
@@ -28,7 +28,7 @@ This mounts the physical partition `/dev/sda2` into the directory `/mnt/rootfs`,
 
 The `debootstrap` tool is used to create a minimal Debian root filesystem from scratch, without requiring a pre-existing installation. The following command is used for this purpose:
 
-```
+```bash
 sudo debootstrap --arch=armhf bookworm /mnt/rootfs
 ```
 

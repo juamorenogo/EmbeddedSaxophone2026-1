@@ -17,7 +17,7 @@ In version 1.0, the initial step is to compile **U-Boot** and create the necessa
 
 Within the base Debian repository, a script named **build_u-boot.sh** is provided, whose contents are shown below:
 
-```
+```bash
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
@@ -41,13 +41,13 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
 
 It can be observed that some files located in the U-Boot patch directory are copied into the root of the U-Boot source tree. Certain modifications must be made to these files. First, by reviewing the PCB hardware design, it can be seen that the **UART0 pins were configured for communication with the SoC**: 
 
-![](../Images/F15.png)
+![](./Images/F15.png)
 
-![](../Images/F16.png)
+![](./Images/F16.png)
 
 Those specific Pins are related to UART0:
 
-![](../Images/F14.png)
+![](./Images/F14.png)
 
 However, in the original configuration files, the UART interface is set to **UART3**. Therefore, it is necessary to modify the configuration to use **UART0** instead.
 
@@ -93,7 +93,7 @@ Finally, the following line is modified to indicate which serial port will be us
 
 It is suggested to clean U-boot anytime some file has changed, using:
 
-```
+```bash
 make -C U-boot clean
 ```
 
@@ -103,7 +103,7 @@ It is also necessary to move the **cd u-boot** command before executing **git ch
 
 The final version of the script is shown below:
 
-```
+```bash
 #!/bin/bash
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
@@ -133,7 +133,7 @@ To accomplish this, **U-Boot must first be compiled** in order to generate the c
 
 In this particular case, the combined binary file u-boot-sunxi-with-spl.bin, which includes both the SPL and the full U-Boot bootloader, is written to the specified offset using the following command:
 
-```
+```bash
 sudo dd if=u-boot/u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8
 
 # dd: low-level disk copy utility used to write raw data to a device
@@ -151,7 +151,7 @@ sudo dd if=u-boot/u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8
 
 For safety, additional commands are used to completely disconnect the SD card:
 
-```
+```bash
 sudo umount /dev/sda*
 sync
 ```

@@ -5,7 +5,7 @@
 
 It was necessary to install a Debian Virtual Machine to be able to make the next steps.  Para esto, ademas de configurar la VM, es necesario instalar las siguientes dependencias:
 
-```
+```bash
 sudo apt install -y debootstrap fakeroot qemu-user-static binfmt-support
 ```
 
@@ -13,13 +13,13 @@ sudo apt install -y debootstrap fakeroot qemu-user-static binfmt-support
 
 Once the partitioning step is completed, it is necessary to create a filesystem for the Debian root partition. In this case, an **ext4 filesystem** is used, which is the standard filesystem for Linux systems:
 
-```
+```bash
 sudo mkfs.ext4 /dev/sdb2
 ```
 
 After creating the filesystem, the partition must be mounted to make it accessible from the host system:
 
-```
+```bash
 sudo mkdir -p /mnt/sd
 sudo mount /dev/sdb2 /mnt/sd
 ```
@@ -34,7 +34,7 @@ In cross-architecture scenarios (e.g., creating an ARM root filesystem from an x
 
 The following command performs the first stage:
 
-```
+```bash
 sudo debootstrap --arch=armhf bookworm /mnt/sd https://deb.debian.org/debian
 ```
 
@@ -54,7 +54,7 @@ During the boot process, the Linux kernel will **mount this partition as the roo
 
 To verify that the Debian root filesystem has been correctly installed, the following command can be used:
 
-```
+```bash
 sudo chroot /mnt/sd
 ```
 
@@ -77,13 +77,13 @@ The filesystem table defines how storage devices are mounted during the boot pro
 
 To modify this file, use the following command:
 
-```
+```bash
 nano /etc/fstab
 ```
 
 Then, **add or edit the root filesystem entry** as follows:
 
-```
+```bash
 /dev/mmcblk0p2  /  ext4  defaults  0  1
 ```
 
@@ -95,7 +95,7 @@ The hostname identifies the system within a network and is required by various s
 
 To configure the hostname, use the following command:
 
-```
+```bash
 echo "t113" > /etc/hostname
 ```
 
@@ -103,7 +103,7 @@ Additionally, the ``/etc/hosts`` file must be configured to correctly resolve th
 
 To edit this file, use the following command:
 
-```
+```bash
 nano /etc/hosts
 ```
 
@@ -122,7 +122,7 @@ To enable DNS resolution, at least one nameserver must be defined.
 
 To configure DNS, use the following command:
 
-```
+```bash
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 ```
 
@@ -134,7 +134,7 @@ Since embedded systems typically rely on a serial interface instead of a graphic
 
 To enable a serial login console, use the following command:
 
-```
+```bash
 ln -s /lib/systemd/system/serial-getty@.service /etc/systemd/system/getty.target.wants/serial-getty@ttyS0.service
 ```
 

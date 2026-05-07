@@ -187,7 +187,7 @@ During the kernel build process, the firmware must be copied into the standard d
 
 Inside the `build_kernel.sh` script, the following commands are used to guarantee that the firmware is always present during the build:
 
-```
+```bash
 # WiFi firmware for RTL8723BU
 mkdir -p linux/lib/firmware/rtlwifi
 cp linux-patch-6.16.9/rtl8723bu_nic.bin linux/lib/firmware/rtlwifi/
@@ -199,7 +199,7 @@ cp linux-patch-6.16.9/rtl8723bu_nic.bin linux/lib/firmware/rtlwifi/
 
 The original script is:
 
-```
+```bash
 
 #!/bin/bash
 
@@ -259,7 +259,7 @@ These issues collectively made the original script fragile, non-deterministic, a
 
 The updated script introduces several corrections that address the main weaknesses of the original implementation, improving robustness, correctness, and reproducibility:
 
-```
+```bash
 #!/bin/bash
 
 set -euo pipefail
@@ -362,7 +362,7 @@ The kernel build script is then executed to verify that the compilation process 
 
 To verify that the build process completes without errors and to keep a record of the output, the following command can be used to generate a log file:
 
-```
+```bash
 ./build_kernel.sh 2>&1 | tee build.log
 ```
 

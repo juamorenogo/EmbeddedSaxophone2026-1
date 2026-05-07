@@ -2,7 +2,7 @@
 
 After running:
 
-```
+```bash
 ./build_kernel.sh
 ```
 

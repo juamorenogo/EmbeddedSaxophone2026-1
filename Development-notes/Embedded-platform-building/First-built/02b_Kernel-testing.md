@@ -9,7 +9,7 @@ If all previous steps were successful, communication through **UART0** should be
 
 The serial interface can be accessed using `minicom` with the following configuration:
 
-```
+```bash
 sudo minicom -D /dev/ttyUSB0 -b 115200
 ```
 
@@ -19,14 +19,14 @@ After powering the board and connecting through `minicom`, the boot sequence can
 
 Initially, **U-Boot starts automatically** and prints its initialization messages. Once in the U-Boot console, the **kernel and Device Tree Blob (DTB) must be loaded manually** from the SD card into memory using the following commands:
 
-```
+```bash
 fatload mmc 0:1 ${kernel_addr_r} zImage  
 fatload mmc 0:1 ${fdt_addr_r} sun8i-t113s-saxo-gateway.dtb
 ```
 
 After both the kernel and DTB are loaded into RAM, the kernel can be executed with:
 
-```
+```bash
 bootz ${kernel_addr_r} - ${fdt_addr_r}
 ```
 

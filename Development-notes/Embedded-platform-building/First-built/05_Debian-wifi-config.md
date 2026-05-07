@@ -35,7 +35,7 @@ The target system uses **ARM (armhf)** architecture.
 
 However, Docker runs on an **amd64 host**, so we must explicitly enable multi-architecture support:
 
-```
+```bash
 dpkg --add-architecture armhf
 ```
 
@@ -47,7 +47,7 @@ This allows downloading packages for the ARM target while running on x86.
 
 A Debian Bookworm container is launched:
 
-```
+```bash
 docker run -it debian:bookworm bash
 ```
 
@@ -59,7 +59,7 @@ This ensures:
 
 ### Step 2 — Update Package Index
 
-```
+```bash
 apt update
 ```
 
@@ -67,7 +67,7 @@ Required to fetch the latest package metadata before downloading anything.
 
 ### Step 3 — Enable ARM Architecture
 
-```
+```bash
 dpkg --add-architecture armhf
 apt update
 ```
@@ -80,13 +80,13 @@ Why:
 
 Instead of installing, we **download `.deb` files only**:
 
-```
+```bash
 apt download iw:armhf wpasupplicant:armhf wireless-tools:armhf wireless-regdb:all
 ```
 
 Then manually resolve missing dependencies:
 
-```
+```bash
 apt download \
     libnl-3-200:armhf \
     libnl-genl-3-200:armhf \
@@ -113,7 +113,7 @@ This step ensures:
 
 Create a safe directory inside the container:
 
-```
+```bash
 mkdir /safe-debs
 mv *.deb /safe-debs/
 ```
@@ -127,7 +127,7 @@ Purpose:
 
 From the host system:
 
-```
+```bash
 docker cp <container_id>:/safe-debs ./debs
 ```
 
@@ -137,13 +137,13 @@ This extracts all downloaded `.deb` files from Docker.
 
 Mount the embedded system root filesystem:
 
-```
+```bash
 mount /dev/sda2 /mnt/sd
 ```
 
 Copy packages:
 
-```
+```bash
 sudo cp ./debs /mnt/sd/root/
 ```
 
@@ -156,7 +156,7 @@ Why `/root/`:
 
 On the embedded board:
 
-```
+```bash
 cd /root/debs
 dpkg -i *.deb
 ```
@@ -171,7 +171,7 @@ Why `dpkg`:
 
 Test tools:
 
-```
+```bash
 iw dev
 ip link
 ```
