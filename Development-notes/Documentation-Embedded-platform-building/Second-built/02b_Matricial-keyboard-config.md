@@ -17,7 +17,7 @@ CONFIG_INPUT_MATRIXKMAP=y
 
 First of all, it is necessary to import the `MATRIX_KEY()` to the system. In this case, it is located on the `dt-bindings/input/input.h` so it must be imported adding the following line:
 
-```
+```C
 #include <dt-bindings/input/input.h>
 ```
 
@@ -32,7 +32,7 @@ The node must contain:
 
 The complete structure is shown below:
 
-```
+```C
 keypad {
     compatible = "gpio-matrix-keypad";
     status = "okay";

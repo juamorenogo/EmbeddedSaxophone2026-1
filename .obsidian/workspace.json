@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development-notes/Documentation-Embedded-platform-building/Second-built/02b_Matricial-keyboard-config.md",
+                "file": "Development-notes/Documentation-Embedded-platform-building/First-built/04_Debian-booting-and-testing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02b_Matricial-keyboard-config"
+              "title": "04_Debian-booting-and-testing"
             }
           }
         ],
@@ -214,19 +214,19 @@
   },
   "active": "cf468e12ca52637a",
   "lastOpenFiles": [
-    "Development-notes/Documentation-Embedded-platform-building/Second-built/02b_Matricial-keyboard-config.md",
-    "Development-notes/Documentation-Embedded-platform-building/Second-built/02a_Matrix-keypad-logic.md",
-    "Development-notes/Documentation-Embedded-platform-building/Second-built/01_Debian-packages-downloading.md",
-    "Development-notes/Documentation-Embedded-platform-building/README.md",
-    "Development-notes/Documentation-Embedded-platform-building/Second-built/README.md",
-    "Development-notes/Documentation-Embedded-platform-building/First-built/README.md",
-    "Development-notes/Documentation-Embedded-platform-building/First-built/06_Debian-basic-config.md",
-    "Development-notes/Documentation-Embedded-platform-building/First-built/05_Debian-wifi-config.md",
-    "Development-notes/Documentation-Embedded-platform-building/First-built/04_Debian-booting-and-testing.md",
+    "Development-notes/Documentation-Embedded-platform-building/First-built/02b_Kernel-testing.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/03_DEPRECATED_Debian-uploading-from-Arch.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/03_Debian-uploading.md",
-    "Development-notes/Documentation-Embedded-platform-building/First-built/02b_Kernel-testing.md",
+    "Development-notes/Documentation-Embedded-platform-building/First-built/04_Debian-booting-and-testing.md",
+    "Development-notes/Documentation-Embedded-platform-building/First-built/05_Debian-wifi-config.md",
+    "Development-notes/Documentation-Embedded-platform-building/First-built/06_Debian-basic-config.md",
+    "Development-notes/Documentation-Embedded-platform-building/Second-built/01_Debian-packages-downloading.md",
+    "Development-notes/Documentation-Embedded-platform-building/Second-built/02a_Matrix-keypad-logic.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/02_SD-partitioning-and-Kernel-upload.md",
+    "Development-notes/Documentation-Embedded-platform-building/First-built/README.md",
+    "Development-notes/Documentation-Embedded-platform-building/Second-built/README.md",
+    "Development-notes/README.md",
+    "Development-notes/Documentation-Embedded-platform-building/Second-built/02b_Matricial-keyboard-config.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/01b_Kernel-Checking.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/01_Kernel-build.md",
     "Development-notes/Documentation-Embedded-platform-building/First-built/00_U-boot.md",
