@@ -4,6 +4,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
+# Limpiar
+
+make -C linux clean
+
 # --- Verificar toolchain ---
 if ! command -v arm-none-linux-gnueabihf-gcc >/dev/null 2>&1; then
     echo "ERROR: arm-none-linux-gnueabihf-gcc no encontrado en PATH"
@@ -34,8 +38,11 @@ cp linux-patch-6.16.9/sun8i-t113s-saxo-gateway.dts \
 cp linux-patch-6.16.9/sunxi-d1s-t113s-saxo.dtsi \
    linux/arch/arm/boot/dts/allwinner
 
-# ❌ ELIMINADO: archivo incorrecto para ARM
-# cp linux-patch-6.16.9/sunxi-d1s-t113.dtsi ...
+cp linux-patch-6.16.9/matrix_keypad.c \
+   linux/drivers/input/keyboard/matrix_keypad.c
+
+#cp linux-patch-6.16.9/matrix_keypad.c \
+#   linux/drivers/pinctrl/sunxi/pinctrl-sunxi.c
 
 
 cd linux

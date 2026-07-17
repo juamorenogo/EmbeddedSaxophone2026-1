@@ -1,0 +1,26 @@
+can't find file to patch at input line 5
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+|index d799ad153b37..fbef59029604 100644
+|--- a/arch/arm/boot/dts/allwinner/Makefile
+|+++ b/arch/arm/boot/dts/allwinner/Makefile
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+can't find file to patch at input line 17
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+|index e4175adb028d..ca4a8f411b49 100644
+|--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+|+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
